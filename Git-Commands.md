@@ -20,9 +20,3 @@ git checkout -b release-1.32
 
 git push origin release-1.32
 ```
-
-## Disable firewall in HyperV VM for Host to VM connectivity with Internal NIC: ##
-```
-netsh advfirewall set allprofiles state off
-```
- 

@@ -1,4 +1,4 @@
-## Copy a VHDX image from winbuilds releases ##
+## Copy a VHDX image to Host VM from winbuilds releases ##
 ```
 Eg:
 Release Branch: ge_current_directiof_nv
@@ -12,7 +12,7 @@ cp "\\winbuilds\release\ge_current_directiof_nv\26449.5000.250711-1700\amd64fre\
 
 ## Create a New Hyper-V VM ##
 
-### Create VM ###
+#### Create VM ####
 ```
 Hyper-V Manager
   -> New
@@ -30,7 +30,7 @@ Hyper-V Manager
                           -> Finish
 ```
 
-### Increase processor count to 4 ###
+#### Increase processor count to 4 ####
 ```
 Hyper-V Manager
   -> Right Click the Newly Created VM [Eg: RitpTestsVm]
@@ -43,7 +43,7 @@ Hyper-V Manager
 
 ## Enable Hyper-V Virtualisation on VM ##
 
-### Commands to be Executed From Host Machine ###
+#### Commands to be Executed From Host Machine ####
 
 ```
 $VmName = "RitpTestsVm"
@@ -53,21 +53,21 @@ Set-VMNetworkAdapter -VMName $VmName -MacAddressSpoofing On
 Start-VM -Name $VmName
 ```
 
-### Configure the OS ###
+#### Configure the OS ####
 ```
 Username: Administrator
 Password: Admin@123
 ```
 
-### Commands to be Executed From Newly Created Guest VM ###
+#### Commands to be Executed From Newly Created Guest VM ####
 
-#### Open powershell (Terminal) in Admin mode ####
+##### Open powershell (Terminal) in Admin mode #####
 ```
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-Management-PowerShell -All
 ```
 
-### Register the VM with Microsoft ###
+#### Register the VM with Microsoft ####
 ```
 Browser: https://aka.ms/getconnected
   -> Register Device
@@ -123,24 +123,24 @@ cp -r \\<ip-address|domain-name of the host vm>\c$\<Path to RitpBins directory>\
 cp -r hcsintegration c:\.
 ```
 
-### Install containerd ###
+#### Install containerd ####
 ```
  .\Install-ContainerHost.ps1 -HyperV
 ```
 
 ## Running Ritp Tests ##
 
-### Finding specific Test ###
+#### Finding specific Test ####
 ```
 cmd /c 'C:\data\test\bin\te.exe .\HnsRiTp.Tests.dll /list /p:CleanHost' | sls "<Pattern prefix for test>"
 ```
 
-### Running specific test ###
+#### Running specific test ####
 ```
 cmd /c 'C:\data\test\bin\te.exe .\HnsRiTp.Tests.dll /Name:<Test name from prev list command> /p:CleanHost'
 ```
 
-### Run all Tests ###
+#### Run all Tests ####
 ```
 cmd /c 'C:\data\test\bin\te.exe .\HnsRiTp.Tests.dll /Select:"@Sku=''Server'' and not @MultiMachine=true" /p:CleanHost' | tee -f c:\ritpOut.txt
 ```
@@ -148,12 +148,12 @@ cmd /c 'C:\data\test\bin\te.exe .\HnsRiTp.Tests.dll /Select:"@Sku=''Server'' and
 
 ## Important Paths ##
 
-### Ritp Code Path ###
+#### Ritp Code Path ####
 ```
 D:\Projects\os_repo\src\onecore\vm\dv\net\hns\test\ritests\tests
 ```
 
-### Path to initiate build bcp command ###
+#### Path to initiate build bcp command ####
 ```
 D:\Projects\os_repo\src\onecore\vm\dv\net\hns
 bcp

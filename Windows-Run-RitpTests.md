@@ -1,4 +1,4 @@
-<img width="294" height="19" alt="image" src="https://github.com/user-attachments/assets/0a675708-a2e6-474f-821b-09966e4bb7a5" />## Copy a VHDX image from winbuilds releases ##
+## Copy a VHDX image from winbuilds releases ##
 ```
 Eg:
 Release Branch: ge_current_directiof_nv

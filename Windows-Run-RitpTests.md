@@ -53,7 +53,7 @@ Set-VMNetworkAdapter -VMName $VmName -MacAddressSpoofing On
 Start-VM -Name $VmName
 ```
 
-## Configure the OS ##
+### Configure the OS ###
 ```
 Username: Administrator
 Password: Admin@123

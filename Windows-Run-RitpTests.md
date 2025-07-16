@@ -67,6 +67,20 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-Management-PowerShell -All
 ```
 
+### Register the VM with Microsoft ###
+```
+Browser: https://aka.ms/getconnected
+  -> Register Device
+    -> Quick Registration - Wired
+      -> Employee CorpNet
+        -> Select Region : APAC
+          -> Select Checkbox : Auto renew when the device connects to the network
+            -> Mac Address of the newly created Guest VM
+              -> Description: Hyper-V VM brought up for running Ritp Tests.
+                -> Agree & Submit
+```
+
+
 ## Make the RiTp Scripts and Binaries Ready ##
 
 ```

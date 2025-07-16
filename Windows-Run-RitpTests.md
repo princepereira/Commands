@@ -1,4 +1,4 @@
-## Copy a VHDX image from winbuilds releases ##
+<img width="294" height="19" alt="image" src="https://github.com/user-attachments/assets/0a675708-a2e6-474f-821b-09966e4bb7a5" />## Copy a VHDX image from winbuilds releases ##
 ```
 Eg:
 Release Branch: ge_current_directiof_nv
@@ -53,6 +53,12 @@ Set-VMNetworkAdapter -VMName $VmName -MacAddressSpoofing On
 Start-VM -Name $VmName
 ```
 
+## Configure the OS ##
+```
+Username: Administrator
+Password: Admin@123
+```
+
 ### Commands to be Executed From Newly Created Guest VM ###
 
 #### Open powershell (Terminal) in Admin mode ####
@@ -60,7 +66,6 @@ Start-VM -Name $VmName
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-Management-PowerShell -All
 ```
-
 
 ## Make the RiTp Scripts and Binaries Ready ##
 
@@ -127,3 +132,21 @@ cmd /c 'C:\data\test\bin\te.exe .\HnsRiTp.Tests.dll /Name:<Test name from prev l
 cmd /c 'C:\data\test\bin\te.exe .\HnsRiTp.Tests.dll /Select:"@Sku=''Server'' and not @MultiMachine=true" /p:CleanHost' | tee -f c:\ritpOut.txt
 ```
 
+
+## Important Paths ##
+
+### Ritp Code Path ###
+```
+D:\Projects\os_repo\src\onecore\vm\dv\net\hns\test\ritests\tests
+```
+
+### Path to initiate build bcp command ###
+```
+D:\Projects\os_repo\src\onecore\vm\dv\net\hns
+bcp
+```
+
+### Ritp Tests DLL Path ###
+```
+D:\Projects\os_repo\obj\amd64fre\onecore\vm\dv\net\cat
+```

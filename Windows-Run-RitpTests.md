@@ -83,3 +83,47 @@ cp \\winbuilds\release\$($BranchName)\$($BuildVersion)\amd64fre\containerbaseosp
 cp \\redmond\1Windows\TestContent\CORE\Base\HYP\VMC\Containers\Tools\expandlayer.exe $DST_DIR\hcsintegration\tools
 cp \\sesdfs.corp.microsoft.com\1windows\TestContent\CORE\Base\HYP\VMC\Containers\HcsTraceProfile.wprp $DST_DIR\hcsintegration\WorkingDir
 ```
+
+## Copy the newly Created Scripts and Binaries Directory (RitpBins) to Guest VM (New VM) using net use command ##
+
+From inside the Guest VM
+
+```
+mkdir c:\data\test\bin
+cd c:\data\test\bin
+```
+```
+net use \\<ip-address|domain-name of the host vm>\c$\<Path to RitpBins directory>
+```
+```
+Username: REDMOND\<Username>
+Password: ?
+```
+```
+cp -r \\<ip-address|domain-name of the host vm>\c$\<Path to RitpBins directory>\* .
+cp -r hcsintegration c:\.
+```
+
+### Install containerd ###
+```
+ .\Install-ContainerHost.ps1 -HyperV
+
+```
+
+## Running Ritp Tests ##
+
+### Finding specific Test ###
+```
+cmd /c 'C:\data\test\bin\te.exe .\HnsRiTp.Tests.dll /list /p:CleanHost' | sls "<Pattern prefix for test>"
+```
+
+### Running specific test ###
+```
+cmd /c 'C:\data\test\bin\te.exe .\HnsRiTp.Tests.dll /Name:<Test name from prev list command> /p:CleanHost'
+```
+
+### Run all Tests ###
+```
+cmd /c 'C:\data\test\bin\te.exe .\HnsRiTp.Tests.dll /Select:"@Sku=''Server'' and not @MultiMachine=true" /p:CleanHost' | tee -f c:\ritpOut.txt
+```
+

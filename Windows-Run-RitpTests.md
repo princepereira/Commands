@@ -153,7 +153,7 @@ cmd /c 'C:\data\test\bin\te.exe .\HnsRiTp.Tests.dll /Select:"@Sku=''Server'' and
 D:\Projects\os_repo\src\onecore\vm\dv\net\hns\test\ritests\tests
 ```
 
-#### Path to initiate build bcp command ####
+#### Path to initiate build (bcp) command ####
 ```
 D:\Projects\os_repo\src\onecore\vm\dv\net\hns
 bcp

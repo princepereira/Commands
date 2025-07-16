@@ -163,3 +163,8 @@ bcp
 ```
 D:\Projects\os_repo\obj\amd64fre\onecore\vm\dv\net\cat
 ```
+
+### Hostnetsvc DLL Path in Ritp Tests VM ###
+```
+c:\windows\system32\hostnetsvc.dll
+```

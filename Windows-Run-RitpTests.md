@@ -81,7 +81,7 @@ Browser: https://aka.ms/getconnected
 ```
 
 
-## Make the RiTp Scripts and Binaries Ready ##
+## Make the RiTp Scripts and Binaries Ready in Host Machine ##
 
 ```
 $BuildVersion = "26449.5000.250711-1700"

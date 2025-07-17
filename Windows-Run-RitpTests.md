@@ -1,3 +1,13 @@
+# STEPS #
+- Copy required VHDX, Scripts and Binaries from `winbuilds releases` directory to the Hyper-V `Host Machine` (Physical DevBox)
+- Create Hyper-V `Guest VM` using the VHDX and Enable Hyper-V Virtualization
+- Register the VM with Microsoft CorpNet
+- Copy the scripts to `Guest VM` using net use command
+- Install containerd in `Guest VM` using the script.
+- Run RITP Tests
+
+# STEPS IN DETAIL #
+
 ## Copy a VHDX image to Host VM from winbuilds releases ##
 ```
 Eg:
@@ -8,6 +18,31 @@ Build Number: 26449.5000.250711-1700
 $BranchName = "ge_current_directiof_nv"
 $BuildNumber = "26449.5000.250711-1700"
 cp "\\winbuilds\release\ge_current_directiof_nv\26449.5000.250711-1700\amd64fre\vhdx\vhdx_server_serverdatacenter_en-us_vl\26449.5000.amd64fre.ge_current_directiof_nv.250711-1700_server_serverdatacenter_en-us_vl.vhdx" .
+```
+
+## Make the RiTp Scripts and Binaries Ready in Host Machine ##
+
+```
+$BuildVersion = "26449.5000.250711-1700"
+$BranchName = "ge_current_directiof_nv"
+
+$AMD_FRE_PATH = "\\winbuilds\release\$($BranchName)\$($BuildVersion)\amd64fre"
+$DST_DIR = "RitpBins"
+
+mkdir -p $DST_DIR\hcsintegration\image
+mkdir -p $DST_DIR\hcsintegration\tools
+mkdir -p $DST_DIR\hcsintegration\WorkingDir
+
+cp -r $AMD_FRE_PATH\test_automation_bins\vm\containersetup\Install-ContainerHost.ps1 $DST_DIR\.
+cp -r $AMD_FRE_PATH\onecoreuap_test_automation_bins\vm\hns\* $DST_DIR\.
+cp -r $AMD_FRE_PATH\bin\wextest\cue\testexecution\minte\* $DST_DIR\.
+
+# Replace master.dockerproject.org with master.dockerproject.com in Install-ContainerHost.ps1 file
+(Get-Content $DST_DIR\Install-ContainerHost.ps1) -replace "master.dockerproject.org", "master.dockerproject.com" | Set-Content $DST_DIR\Install-ContainerHost.ps1
+
+cp \\winbuilds\release\$($BranchName)\$($BuildVersion)\amd64fre\containerbaseospkgs\cbaseospkg_nanoserver_en-us\CBaseOs_$($BranchName)_$($BuildVersion)_amd64fre_NanoServer_en-us.tar.gz $DST_DIR\hcsintegration\image
+cp \\redmond\1Windows\TestContent\CORE\Base\HYP\VMC\Containers\Tools\expandlayer.exe $DST_DIR\hcsintegration\tools
+cp \\sesdfs.corp.microsoft.com\1windows\TestContent\CORE\Base\HYP\VMC\Containers\HcsTraceProfile.wprp $DST_DIR\hcsintegration\WorkingDir
 ```
 
 ## Create a New Hyper-V VM ##
@@ -67,7 +102,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-Management-PowerShell -All
 ```
 
-#### Register the VM with Microsoft ####
+#### Register the VM with Microsoft CorpNet ####
 ```
 Browser: https://aka.ms/getconnected
   -> Register Device
@@ -78,29 +113,6 @@ Browser: https://aka.ms/getconnected
             -> [Mac Address of the newly created Guest VM]
               -> Description: [Hyper-V VM brought up for running Ritp Tests.]
                 -> Agree & Submit
-```
-
-
-## Make the RiTp Scripts and Binaries Ready in Host Machine ##
-
-```
-$BuildVersion = "26449.5000.250711-1700"
-$BranchName = "ge_current_directiof_nv"
-
-$AMD_FRE_PATH = "\\winbuilds\release\$($BranchName)\$($BuildVersion)\amd64fre"
-$DST_DIR = "RitpBins"
-
-mkdir -p $DST_DIR\hcsintegration\image
-mkdir -p $DST_DIR\hcsintegration\tools
-mkdir -p $DST_DIR\hcsintegration\WorkingDir
-
-cp -r $AMD_FRE_PATH\test_automation_bins\vm\containersetup\Install-ContainerHost.ps1 $DST_DIR\.
-cp -r $AMD_FRE_PATH\onecoreuap_test_automation_bins\vm\hns\* $DST_DIR\.
-cp -r $AMD_FRE_PATH\bin\wextest\cue\testexecution\minte\* $DST_DIR\.
-
-cp \\winbuilds\release\$($BranchName)\$($BuildVersion)\amd64fre\containerbaseospkgs\cbaseospkg_nanoserver_en-us\CBaseOs_$($BranchName)_$($BuildVersion)_amd64fre_NanoServer_en-us.tar.gz $DST_DIR\hcsintegration\image
-cp \\redmond\1Windows\TestContent\CORE\Base\HYP\VMC\Containers\Tools\expandlayer.exe $DST_DIR\hcsintegration\tools
-cp \\sesdfs.corp.microsoft.com\1windows\TestContent\CORE\Base\HYP\VMC\Containers\HcsTraceProfile.wprp $DST_DIR\hcsintegration\WorkingDir
 ```
 
 ## Copy the newly Created Scripts and Binaries Directory (RitpBins) to Guest VM (New VM) using net use command ##

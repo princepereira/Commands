@@ -183,7 +183,7 @@ D:\Projects\os_repo\obj\amd64fre\onecore\vm\dv\net\hns\service\dll\objfre\amd64\
 ```
 ### Ritp Tests DLL Path ###
 ```
-D:\Projects\os_repo\obj\amd64fre\onecore\vm\dv\net\cat
+D:\Projects\os_repo\obj\amd64fre\onecore\vm\dv\net\hns\test\ritests\tests\objfre\amd64\HnsRiTp.Tests.dll
 ```
 
 ### Hostnetsvc DLL Path in Ritp Tests VM ###

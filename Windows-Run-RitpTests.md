@@ -181,12 +181,12 @@ bcp
 ```
 D:\Projects\os_repo\obj\amd64fre\onecore\vm\dv\net\hns\service\dll\objfre\amd64\hostnetsvc.dll
 ```
-### Ritp Tests DLL Path ###
+#### Ritp Tests DLL Path ####
 ```
 D:\Projects\os_repo\obj\amd64fre\onecore\vm\dv\net\hns\test\ritests\tests\objfre\amd64\HnsRiTp.Tests.dll
 ```
 
-### Hostnetsvc DLL Path in Ritp Tests VM ###
+#### Hostnetsvc DLL Path in Ritp Tests VM ####
 ```
 c:\windows\system32\hostnetsvc.dll
 ```

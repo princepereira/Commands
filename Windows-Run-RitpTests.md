@@ -177,6 +177,10 @@ D:\Projects\os_repo\src\onecore\vm\dv\net\hns
 bcp
 ```
 
+#### HNS DLL Path from os_repo ####
+```
+D:\Projects\os_repo\obj\amd64fre\onecore\vm\dv\net\hns\service\dll\objfre\amd64\hostnetsvc.dll
+```
 ### Ritp Tests DLL Path ###
 ```
 D:\Projects\os_repo\obj\amd64fre\onecore\vm\dv\net\cat

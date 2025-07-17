@@ -1,3 +1,9 @@
+# VM PREREQUISITES #
+- RAM: 8000 MB
+- CPU Cores: 4
+- Use VHDX
+- Use Generation 2
+
 # STEPS #
 - Copy required VHDX, Scripts and Binaries from `winbuilds releases` directory to the Hyper-V `Host Machine` (Physical DevBox)
 - Create Hyper-V `Guest VM` using the VHDX and Enable Hyper-V Virtualization

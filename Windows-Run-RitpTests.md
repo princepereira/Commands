@@ -53,7 +53,7 @@ Hyper-V Manager
   -> New
     -> Virtual Machine
       -> Next
-        -> [Virtual Machine Name - Eg: RitpTestsVm]
+        -> [Virtual Machine Name - Eg: RitpTestVm]
           -> Next
             -> Generation 2
               -> Startup memory : 8000 MB
@@ -68,7 +68,7 @@ Hyper-V Manager
 #### Increase processor count to 4 ####
 ```
 Hyper-V Manager
-  -> Right Click the Newly Created VM [Eg: RitpTestsVm]
+  -> Right Click the Newly Created VM [Eg: RitpTestVm]
     -> Settings
       -> Processor
         -> Number of virtual processors: 4
@@ -81,7 +81,7 @@ Hyper-V Manager
 #### Commands to be Executed From Host Machine ####
 
 ```
-$VmName = "RitpTestsVm"
+$VmName = "RitpTestVm"
 Stop-VM -Name $VmName
 Set-VMProcessor -VMName $VmName -ExposeVirtualizationExtensions $true
 Set-VMNetworkAdapter -VMName $VmName -MacAddressSpoofing On

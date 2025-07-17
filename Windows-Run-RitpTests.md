@@ -12,11 +12,11 @@
 ```
 Eg:
 Release Branch: ge_current_directiof_nv
-Build Number: 26449.5000.250711-1700
+Build Version: 26449.5000.250711-1700
 ```
 ```
 $BranchName = "ge_current_directiof_nv"
-$BuildNumber = "26449.5000.250711-1700"
+$BuildVersion = "26449.5000.250711-1700"
 cp "\\winbuilds\release\ge_current_directiof_nv\26449.5000.250711-1700\amd64fre\vhdx\vhdx_server_serverdatacenter_en-us_vl\26449.5000.amd64fre.ge_current_directiof_nv.250711-1700_server_serverdatacenter_en-us_vl.vhdx" .
 ```
 

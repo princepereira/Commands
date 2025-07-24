@@ -25,11 +25,12 @@ bcp
 cd $ProjectRoot\src\onecore\services\
 
 bcp
-```
-```
+
 cd $ProjectRoot\src\onecore\vm\dv\net\hns
 
 bcp
+
+HNS DLL Location : $ProjectRoot\obj\amd64fre\onecore\vm\dv\net\hns\service\dll\objfre\amd64\HostNetSvc.dll
 ```
 - **Vpack refresh issue during razzle run** : `Restart the computer`
 

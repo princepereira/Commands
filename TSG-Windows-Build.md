@@ -6,7 +6,7 @@ $ProjectRoot = "D:\Projects\$NewRepo"
 
 cd D:\Projects
 
-favbranch /BranchName:official/$BranchName
+favbranch /BranchName:$BranchName
 
 gvfs clone https://microsoft@dev.azure.com/microsoft/OS/_git/os.2020 -b $BranchName $NewRepo
 

@@ -12,6 +12,13 @@ netsh advfirewall set allprofiles state off
 [Inside Node]: netsh wfp capture stop
 ```
 
+## Show Filters and Delete Filter ##
+```
+netsh wfp show filters
+
+netsh wfp delete filter id=97494
+```
+
 ## .ETL Conversion Commands ##
 ```
 pktmon etl2txt server.etl

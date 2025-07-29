@@ -25,3 +25,20 @@ pktmon etl2txt server.etl
 
 netsh trace convert server.etl
 ```
+
+## Collect Time Travel Trace of a Windows Proces ##
+
+Get the Process ID [Terminal 1, Terminal 2]:
+```
+$hnsProcessId = Get-WmiObject -Class Win32_Service -Filter "Name LIKE 'Hns'" | Select-Object -ExpandProperty ProcessId
+```
+
+Start Trace [Terminal 1]
+```
+.\TTTracer.exe /attach $hnsProcessId
+```
+
+Stop Trace [Terminal 2]
+```
+.\TTTracer.exe /stop $hnsProcessId
+```

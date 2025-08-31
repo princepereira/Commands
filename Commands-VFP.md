@@ -53,3 +53,22 @@ vfpctrl.exe /port $cPort /get-port-flow-settings
 vfpctrl.exe /port $portGuid /set-port-flow-settings "240 15 240 240 1400 1000 2000 1 1 0 1 1 1 0 0 0 100000 0 0 0 0 1 50 1 0 0 0 10000 1"
 ```
 
+#### Find the Port ID ####
+
+```
+$clientPodIP= "10.244.2.125" ; $mac = (Get-HnsEndpoint | Where IPAddress -Eq $clientPodIP).MacAddress
+
+$data = vfpctrl.exe /list-vmswitch-port | sls $mac -Context 20,1
+
+$port = $data -split "`n" | Where-Object { $_ -match "^\s*Port name\s*:" } | ForEach-Object {
+    ($_ -split ":", 2)[1].Trim()
+}
+```
+
+#### Find the LB_DSR Rule ####
+
+```
+$curNodeIp = "10.224.0.6" ; $vip= "10.0.199.211" ; $intPort = "4444" ; $extPort = "4444"
+
+vfpctrl /port $port /layer LB_DSR /group LB_DSR_IPv4_OUT /list-rule | sls "LB_DSR_$curNodeIp`_$vip`_$intPort`_$extPort" -Context 1,46
+```	

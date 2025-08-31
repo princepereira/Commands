@@ -53,3 +53,8 @@ Reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting\LocalDumps" /V 
 Reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting\LocalDumps" /V DumpFolder /t REG_EXPAND_SZ /d "C:\LocalDumps" /f
 restart-service -f hns
 ```
+
+#### DNSMaximumTTL ####
+```
+New-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Services\hns\State -Name DNSMaximumTTL -Value 282
+```

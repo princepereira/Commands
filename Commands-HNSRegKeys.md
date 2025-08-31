@@ -44,3 +44,12 @@ netsh int ipv4 show excludedportrange protocol=udp store=active
  
 **Set the port range count:**
 ``` New-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Services\hns\State -Name ExcludedPortRangePortCount -PropertyType DWORD -Value 60 ```
+
+#### HNS Crash Dump ####
+```
+mkdir C:\LocalDumps
+Reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting\LocalDumps" /V DumpCount /t REG_DWORD /d 50 /f
+Reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting\LocalDumps" /V DumpType /t REG_DWORD /d 2 /f
+Reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting\LocalDumps" /V DumpFolder /t REG_EXPAND_SZ /d "C:\LocalDumps" /f
+restart-service -f hns
+```

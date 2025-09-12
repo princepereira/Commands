@@ -81,3 +81,12 @@ Sign the commit
 ```
 git commit -S --amend
 ```
+
+## Error "gpg: signing failed: No agent running"
+```
+gpgconf --kill gpg-agent
+gpgconf --launch gpg-agent
+git commit --amend --no-edit
+git config --global gpg.program "C:/Program Files (x86)/GnuPG/bin/gpg.exe"
+git commit --amend --no-edit
+```

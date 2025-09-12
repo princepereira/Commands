@@ -86,7 +86,6 @@ git commit -S --amend
 ```
 gpgconf --kill gpg-agent
 gpgconf --launch gpg-agent
-git commit --amend --no-edit
 git config --global gpg.program "C:/Program Files (x86)/GnuPG/bin/gpg.exe"
 git commit --amend --no-edit
 ```

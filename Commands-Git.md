@@ -90,3 +90,14 @@ git commit --amend --no-edit
 git config --global gpg.program "C:/Program Files (x86)/GnuPG/bin/gpg.exe"
 git commit --amend --no-edit
 ```
+
+## How to add/update submodule to a project
+```
+git submodule update --remote --merge external/cnc
+```
+
+## How to pull submodules
+```
+git clone --recurse-submodules https://mscodehub.visualstudio.com/NGServerContainerNetworking/_git/wcnagent
+git pull --recurse-submodules
+```

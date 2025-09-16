@@ -72,3 +72,27 @@ $curNodeIp = "10.224.0.6" ; $vip= "10.0.199.211" ; $intPort = "4444" ; $extPort 
 
 vfpctrl /port $port /layer LB_DSR /group LB_DSR_IPv4_OUT /list-rule | sls "LB_DSR_$curNodeIp`_$vip`_$intPort`_$extPort" -Context 1,46
 ```	
+
+#### VFP Add Layer ####
+
+```
+$p = <Port Name from the command: vfpctrl /list-vmswitch-port>
+
+vfpctrl.exe /port $p /add-layer "INTERNAL_L2_REWRITE_LAYER INTERNAL_L2_REWRITE_LAYER stateless 75 0"
+```
+
+#### VFP Add Group ####
+
+```
+$p = <Port Name from the command: vfpctrl /list-vmswitch-port>
+
+vfpctrl.exe /port $p /layer INTERNAL_L2_REWRITE_LAYER /add-group "INTERNAL_L2_REWRITE_GROUP_IPV4_OUT INTERNAL_L2_REWRITE_GROUP_IPV4_OUT out 0  lpm VfxConditionDestinationIp"
+```
+
+#### VFP Add Rule ####
+
+```
+$p = <Port Name from the command: vfpctrl /list-vmswitch-port>
+
+vfpctrl /port $p /layer LB_DSR /group LB_DSR_IPv4_OUT /add-rule-ex "lbnat lbnat * * * * * 3 240 500 lbnat 0 0/0 720896 169.254.95.145 4444"
+```

@@ -450,3 +450,30 @@ Delete the NSG rule
 PS> az network nsg rule delete --resource-group <CLUSTER_RG> --nsg-name <NSG_NAME> --name tempRDPAccess
 Eg: PS> az network nsg rule delete --resource-group myResourceGroup --nsg-name aks-agentpool-42101894-nsg --name tempRDPAccess
 ```
+
+## Find all container images used in all clusters part of a subscription ##
+
+Find the cluster names and rgs: 
+```
+az aks list --query '[].{Name:name, ResourceGroup:resourceGroup}' -o table
+```
+
+Get the kube context
+```
+$rgName = "wcn-test-rg"
+$clusterName = "wcn-test-cluster"
+
+az aks get-credentials --resource-group $rgName --name $clusterName --overwrite-existing
+```
+
+Find the images and see if those images are from Non-ACR/Non-MCR
+```
+$images = kubectl get pods -A -o jsonpath="{..image}" | ForEach-Object { $_.Split(" ") } | Where-Object { $_ -ne "" } | Sort-Object -Unique
+foreach($image in $images){
+    if(($image -notlike "mcr.microsoft.com*") -and ($image -notmatch "\.azurecr\.io")) {
+        "Non-Mcr/Non-Acr image found in RG: $rgName - Cluster: $clusterName === : $image"
+    }
+}
+```
+
+

@@ -26,7 +26,7 @@ pktmon etl2txt server.etl
 netsh trace convert server.etl
 ```
 
-## Collect Time Travel Trace of a Windows Proces ##
+## Collect Time Travel Trace of a Windows Process ##
 
 Get the Process ID [Terminal 1, Terminal 2]:
 ```
@@ -41,4 +41,13 @@ Start Trace [Terminal 1]
 Stop Trace [Terminal 2]
 ```
 .\TTTracer.exe /stop $hnsProcessId
+```
+
+## Capture packets with VLAN tagging using Pktmon  ##
+```
+pktmon start --capture --comp all --flags 0x0ff -m multi-file
+
+pktmon stop
+
+pktmon etl2txt <server.etl>
 ```

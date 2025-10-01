@@ -476,4 +476,23 @@ foreach($image in $images){
 }
 ```
 
+## Push a Docker Image to ACR ##
 
+Login to ACR
+```
+az login
+az acr login --name wcninternal
+az account set --subscription <Subscription ID>
+```
+Switch to Linux Containers
+
+Pull Kwok Image
+```
+docker pull registry.k8s.io/kwok/kwok:v0.6.0
+```
+
+Tag with ACR repo URL and Push
+```
+docker tag registry.k8s.io/kwok/kwok:v0.6.0 wcninternal.azurecr.io/kwok:v0.6.0
+docker push wcninternal.azurecr.io/kwok:v0.6.0
+```

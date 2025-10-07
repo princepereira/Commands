@@ -499,5 +499,5 @@ docker push wcninternal.azurecr.io/kwok:v0.6.0
 
 ## Nodepool Delete Command ##
 ```
-az aks nodepool delete --resource-group wcnagent-cicd-dualstack-23h2-rg --cluster-name wcnagent-cicd-dualstack-23h2-cluster --name ni9njd --no-wait --yes
+az aks nodepool delete --resource-group wcnagent-cicd-dualstack-23h2-rg --cluster-name wcnagent-cicd-dualstack-23h2-cluster --name ni9njd --no-wait
 ```

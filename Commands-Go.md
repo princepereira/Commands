@@ -15,3 +15,15 @@ Always run on Windows Node on this directory Path: C:\Users\ppereira\GoProjects\
 ```
 go test -timeout 30s -run "^(TestCreateServiceVip|TestCreateRemoteEndpointOverlay|TestCreateRemoteEndpointL2Bridge|TestSharedRemoteEndpointDelete|TestSharedRemoteEndpointUpdate|TestCreateLoadBalancer|TestCreateDsrLoadBalancer|TestClusterIPLBInCreateDsrLoadBalancer|TestEndpointSlice|TestNoopEndpointSlice|TestFindRemoteSubnetProviderAddress)$" k8s.io/kubernetes/pkg/proxy/winkernel
 ```
+
+## Run all tests with coverage ##
+
+In Linux/WSL
+```
+go test -v -cover .\\...
+```
+
+## Run all tests without coverage ##
+```
+go test -v ./... -count=1
+```

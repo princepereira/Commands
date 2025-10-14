@@ -51,3 +51,16 @@ pktmon stop
 
 pktmon etl2txt <server.etl>
 ```
+
+## Kir Tool / Staging Tool ##
+
+[KirTool](https://www.osgwiki.com/wiki/WSD_Wiki-KIRTool)
+
+Execute only one time: `.\kirtool.exe telemetry-optin`
+
+```
+.\kirtool.exe staging query <bugid>
+.\kirtool.exe staging enable <bugid>
+.\kirtool.exe staging disable <bugid>
+```
+

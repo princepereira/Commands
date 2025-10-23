@@ -506,3 +506,13 @@ az aks nodepool delete --resource-group wcnagent-cicd-dualstack-23h2-rg --cluste
 ```
 az group delete --name myResourceGroup --yes
 ```
+
+## List all available Kubernetes versions in a region ## 
+```
+az aks get-versions --location eastus2 -o table
+```
+
+## Show the region of particulare resource group ##
+```
+az group show --name $RgName --query location -o tsv
+```

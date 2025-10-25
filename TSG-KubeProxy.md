@@ -1,4 +1,4 @@
-## Kube Proxy Transition ##
+## Kube Proxy Endpoint Transition ##
 ```
 demo/tcp-server-ipv4-cluster:tcp
 

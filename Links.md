@@ -1,1 +1,2 @@
 - [Kubernetes Patch Updates](https://kubernetes.io/releases/patch-releases/)
+- [Kubernetes Sig Release 1.35](https://github.com/kubernetes/sig-release/tree/master/releases/release-1.35)

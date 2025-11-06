@@ -118,12 +118,13 @@ Once completed you should see this:
 14. Copy it to Windows using: ` cp kube-proxy.exe /mnt/c/users/$user/Documents `
 
 
-## 16. How to cherry pick ##
+## How to cherry pick ##
 - WSL Ubuntu
 - Go to Kubernetes Projects
 - Execute CherryPick script
 - Command: ` hack/cherry_pick_pull.sh upstream/<K8S Target Release Branch> <Master PR Number> `
   <br/> Eg: ` hack/cherry_pick_pull.sh upstream/release-3.14 98765 `
 - Update release note, and /kind
+- [Sample PR](https://github.com/kubernetes/kubernetes/pull/134034)
 
 

@@ -1,4 +1,6 @@
-## Kube Proxy Endpoint Transition ##
+- ## [Kubernetes Patch Releases](https://kubernetes.io/releases/patch-releases/) ##
+
+- ## Kube Proxy Endpoint Transition ##
 ```
 demo/tcp-server-ipv4-cluster:tcp
 
@@ -39,7 +41,7 @@ New Endpoint came up: 10.224.0.40
 10.224.0.78:4444={Ready:true,Serving:true,Terminating:false,IsRemote:false}
 ```
 
-## Build KubeProxy in Windows ##
+- ## Build KubeProxy in Windows ##
 
 Steps are taken from: 
 - [preparing-your-local-operating-system](https://github.com/kubernetes/community/blob/master/contributors/devel/development.md#preparing-your-local-operating-system)
@@ -118,7 +120,7 @@ Once completed you should see this:
 14. Copy it to Windows using: ` cp kube-proxy.exe /mnt/c/users/$user/Documents `
 
 
-## How to cherry pick ##
+- ## How to cherry pick ##
 - WSL Ubuntu
 - Go to Kubernetes Projects
 - Execute CherryPick script

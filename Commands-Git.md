@@ -151,5 +151,12 @@ git remote add k8s ../kubernetes
 git fetch k8s winkernel-history
 
 # Add the subtree into the destination under 'pkg' (no squash → full history preserved)
-git subtree add --prefix=pkg k8s winkernel-his
+git subtree add --prefix=pkg k8s winkernel-history
+
+# Create a feature branch for the import and push
+git checkout -b winkernel-import
+git push origin winkernel-import
+
+# Review commit history associated with the imported files
+git log -- pkg          # or -- pkg/winkernel
 ```

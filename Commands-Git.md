@@ -160,3 +160,25 @@ git push origin winkernel-import
 # Review commit history associated with the imported files
 git log -- pkg          # or -- pkg/winkernel
 ```
+
+When multiple sub-directories are involved
+
+```
+# Source
+git clone https://github.com/kubernetes/kubernetes.git
+cd kubernetes
+git checkout master
+git subtree split --prefix=pkg/proxy/winkernel   -b winkernel-history
+git subtree split --prefix=pkg/proxy/someotherwin -b someotherwin-history
+
+# Destination
+cd ..
+git clone https://github.com/<you>/windows-kubeproxy.git
+cd windows-kubeproxy
+git remote add k8s ../kubernetes
+git fetch k8s winkernel-history someotherwin-history
+git subtree add --prefix=pkg/winkernel     k8s winkernel-history
+git subtree add --prefix=pkg/someotherwin  k8s someotherwin-history
+git checkout -b import-multi-subtrees
+git push origin import-multi-subtrees
+```

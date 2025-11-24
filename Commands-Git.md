@@ -103,6 +103,8 @@ git pull --recurse-submodules
 
 ## Subtree an existing repo by preserving Git history ##
 
+**Option 1: Using 3rd-Part tool git-filter-repo**
+
 - [Install git-filter-repo in Linux / WSL](https://github.com/newren/git-filter-repo)
 ```
 - Git-filter repo prerequisites: git >= 2.36.0, python3 >= 3.6
@@ -129,4 +131,25 @@ git pull --recurse-submodules
 - Verify history
 ```
 - git log -- pkg/proxy/winkernel
+```
+
+**Option 2 (Recommended): Using git inbuilt functionality**
+
+```
+git clone https://github.com/princepereira/windows-kubeproxy.git
+git clone https://github.com/kubernetes/kubernetes.git
+
+cd kubernetes
+
+# Create a history-only branch for winkernel
+git subtree split --prefix=pkg/proxy/winkernel -b winkernel-history
+
+cd ../windows-kubeproxy
+
+# Add the local kubernetes clone as a remote named 'k8s'
+git remote add k8s ../kubernetes
+git fetch k8s winkernel-history
+
+# Add the subtree into the destination under 'pkg' (no squash → full history preserved)
+git subtree add --prefix=pkg k8s winkernel-his
 ```

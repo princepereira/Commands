@@ -100,3 +100,33 @@ git submodule update --remote --merge external/cnc
 git clone --recurse-submodules https://mscodehub.visualstudio.com/NGServerContainerNetworking/_git/wcnagent
 git pull --recurse-submodules
 ```
+
+## Subtree an existing repo by preserving Git history ##
+
+- [Install git-filter-repo in Linux / WSL](https://github.com/newren/git-filter-repo)
+```
+- Git-filter repo prerequisites: git >= 2.36.0, python3 >= 3.6
+- sudo apt install pipx
+- pipx install git-filter-repo
+```
+
+- Clone Kubernetes
+```
+- git clone https://github.com/kubernetes/kubernetes.git
+- cd kubernetes
+```
+
+- Filter out subdirectory which is required
+```
+- git filter-repo --path pkg/proxy/winkernel --force
+```
+
+- Create a new subdirectory from the existing subdirectory
+```
+- git filter-repo --to-subdirectory-filter pkg
+```
+
+- Verify history
+```
+- git log -- pkg/proxy/winkernel
+```

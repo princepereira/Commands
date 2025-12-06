@@ -1,3 +1,43 @@
+## Step By Step Process - Create AKS Cluster ##
+
+Set the configuration
+
+```
+$subscriptionId=""
+$rgName="pper-vfptest-rg"
+$location="westeurope"
+$clusterName="pper-vfptest-aks"
+$nodeUserName=“prince"
+$nodePassword="prince@123456123456"
+$k8sVersion="1.32.7"
+$nodePoolName=“npwin"
+$nodeCount="2"
+```
+Login and set the subscription
+
+```
+az login
+az account set --subscription $subscriptionId
+```
+
+Create Resource Group, Single Stack Cluster and NodePools
+
+```
+az group create --name $rgName --location $location
+az aks create --resource-group $rgName --name $clusterName --node-count 1 --windows-admin-username $nodeUserName --windows-admin-password $nodePassword --kubernetes-version $k8sVersion --os-sku AzureLinux --network-plugin-mode overlay --network-plugin azure
+az aks nodepool add --resource-group $rgName --cluster-name $clusterName --os-type Windows --os-sku Windows2022 --node-vm-size standard_e8-2as_v5 --name $nodePoolName --node-count $nodeCount
+az aks get-credentials --resource-group $rgName --name $clusterName --overwrite-existing
+```
+
+Create Resource Group, Dual Stack Cluster and NodePools
+
+```
+az group create --name $rgName --location $location
+az aks create --resource-group $rgName --name $clusterName --node-count 1 --windows-admin-username $nodeUserName --windows-admin-password $nodePassword --kubernetes-version $k8sVersion --os-sku AzureLinux --network-plugin-mode overlay --network-plugin azure --ip-families ipv4,ipv6
+az aks nodepool add --resource-group $rgName --cluster-name $clusterName --os-type Windows --os-sku Windows2022 --node-vm-size standard_e8-2as_v5 --name $nodePoolName --node-count $nodeCount
+az aks get-credentials --resource-group $rgName --name $clusterName --overwrite-existing
+```
+
 ## Attach a acr to AKS cluster (To make AKS cluster pull images from the acr) ##
 ```
 az aks update --name <cluster name> --resource-group <rg name> --attach-acr <acr repo name>

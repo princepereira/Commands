@@ -10,6 +10,9 @@ favbranch /BranchName:$BranchName
 
 gvfs clone https://microsoft@dev.azure.com/microsoft/OS/_git/os.2020 -b $BranchName $NewRepo
 
+# enable code signing in razzle
+SET NT_SIGNCODE=1
+
 cd $ProjectRoot\src\utilities
 
 .\razzle.ps1

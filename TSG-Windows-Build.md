@@ -9,13 +9,29 @@ cd D:\Projects
 favbranch /BranchName:$BranchName
 
 gvfs clone https://microsoft@dev.azure.com/microsoft/OS/_git/os.2020 -b $BranchName $NewRepo
+```
 
-# enable code signing in razzle
-SET NT_SIGNCODE=1
+Build No Opt Chk Build (Debug Build)
 
+```
+cd $ProjectRoot\src
+
+cmd
+
+.\tools\razzle.cmd amd64chk no_opt
+```
+
+For Free Build
+
+```
 cd $ProjectRoot\src\utilities
 
 .\razzle.ps1
+```
+
+```
+# enable code signing in razzle
+SET NT_SIGNCODE=1
 
 cd $ProjectRoot\src\onecore\base\wil\containment
 

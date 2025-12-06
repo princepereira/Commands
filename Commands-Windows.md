@@ -161,3 +161,27 @@ robocopy "C:\SourceFolder" "D:\BackupFolder" /E
 
 robocopy "C:\SourceFolder" "\\172.29.48.1\c$\Shared\BackupFolder" /E
 ```
+
+## Time Travel Trace ##
+```
+.reload wcnagent.dll
+
+bm wcnagent!*WcnAgentDeleteLoadBalancer
+
+bm wcnagent!wcna::update_loadbalancer
+
+
+
+○ \\dbg\privates\LKG\uncompressed\amd64\TTD  
+
+- Get the Hns Process ID  (in Terminal 1, 2)
+○ $hnsProcessId = Get-WmiObject -Class Win32_Service -Filter "Name LIKE 'Hns'" | Select-Object -ExpandProperty ProcessId
+
+- Start tttracer with Hns Process ID (in Terminal 1)
+○ .\TTTracer.exe /attach $hnsProcessId
+
+- Reproduce the issue while tttracer is running
+
+- Stop the tttracer once the issue is reproduced  (in Terminal 2)
+.\TTTracer.exe /stop $hnsProcessId
+```

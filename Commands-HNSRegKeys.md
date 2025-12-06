@@ -1,3 +1,19 @@
+#### Get the Velocity Key Values without KirTool/Staging-Query ####
+GET
+```
+Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides" -Name 140377743
+```
+DISABLE
+```
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides" -Name 140377743 -Value 0 -Type DWORD
+Restart-Computer -force
+```
+ENABLE
+```
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides" -Name 140377743 -Value 1 -Type DWORD
+Restart-Computer -force
+```
+
 #### HNS Startup Delay Debug ####
 
 ```
